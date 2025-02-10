@@ -81,11 +81,11 @@ spec:
       name: Create Branch
       action: azure:create-branch
       input:
-        branchNames: ["develop", "qa", "uat"]
+        repoUrl: ${{ (parameters.repoUrl | parseRepoUrl).repo }}
         organization: ${{ (parameters.repoUrl | parseRepoUrl).organization  }}
         project: ${{ (parameters.repoUrl | parseRepoUrl).project }}
-        repository: ${{ (parameters.repoUrl | parseRepoUrl).repo }}
         sourceBranch: "master"
+        branchNames: ["develop", "qa", "uat"]
 
   output:
     links:
