@@ -75,16 +75,16 @@ spec:
       name: Debug Repo Info
       action: debug:log
       input:
-        message: "${{ parameters.repoUrl }} ${{ parameters.project }} ${{ parameters.organization }}"
+        message: "Repo URL parsed: ${{ parameters.repoUrl | parseRepoUrl }}"
 
     - id: create-branch
       name: Create Branch
       action: azure:create-branch
       input:
         repoUrl: ${{ (parameters.repoUrl | parseRepoUrl).repo }}
-        organization: ${{ (parameters.repoUrl | parseRepoUrl).organization  }}
+        organization: ${{ (parameters.repoUrl | parseRepoUrl).organization }}
         project: ${{ (parameters.repoUrl | parseRepoUrl).project }}
-        sourceBranch: "master"
+        sourceBranch: master
         targetBranches: ["develop", "qa", "uat"]
 
   output:
