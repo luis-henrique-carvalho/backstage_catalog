@@ -43,13 +43,6 @@ spec:
           ui:options:
             allowedHosts:
               - dev.azure.com
-        targetBranches:
-            title: Target Branches
-            type: array
-            items:
-              type: string
-            ui:field: EntityTagsPicker
-            ui:options: {}
 
   steps:
     - id: fetch-base
@@ -86,7 +79,7 @@ spec:
         organization: ${{ (parameters.repoUrl | parseRepoUrl).organization  }}
         project: ${{ (parameters.repoUrl | parseRepoUrl).project }}
         sourceBranch: "master"
-        targetBranch: ${{ parameters.targetBranches }}
+        targetBranches: ["develop", "qa", "uat"]
 
   output:
     links:
