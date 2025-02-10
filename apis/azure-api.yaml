@@ -9,8 +9,8 @@ metadata:
     - kind-api
     - cloud-azure
 spec:
-  type: service
   owner: user:guest
+  type: service
 
   parameters:
     - title: Fill in some steps
@@ -50,9 +50,6 @@ spec:
       action: fetch:plain
       input:
         url: https://github.com/luis-henrique-carvalho/azure_api_template
-        values:
-          - name: ${{ parameters.name }}
-          - service: ${{ parameters.service }}
 
     - id: publish-azure
       name: Publish to Azure DevOps
