@@ -45,11 +45,14 @@ spec:
               - dev.azure.com
 
   steps:
-    - id: fetch-docs
-      name: Fetch Docs
-      action: fetch:plain
+    - id: fetch-base
+      name: Fetch Base
+      action: fetch:template
       input:
         url: https://github.com/luis-henrique-carvalho/azure_api_template
+        values:
+          name: ${{ parameters.name }}
+          service: ${{ parameters.service }}
 
     - id: publish-azure
       name: Publish to Azure DevOps
