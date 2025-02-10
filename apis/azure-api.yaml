@@ -1,0 +1,89 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: azure-api
+  title: Azure API
+  description: Create a new API in Azure DevOps
+  tags:
+    - recommended
+    - kind-api
+    - cloud-azure
+spec:
+  type: service
+  owner: user:guest
+
+  parameters:
+    - title: Fill in some steps
+      required:
+        - name
+        - service
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Unique name of the component
+          ui:autofocus: true
+          ui:options:
+            rows: 5
+        service:
+          title: Service
+          type: string
+          description: The service that this component belongs to
+          ui:autofocus: true
+          ui:options:
+            rows: 5
+    - title: Choose a location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - dev.azure.com
+
+  steps:
+    # Each step executes an action, in this case one templates files into the working directory.
+    - id: fetch-base
+      name: Fetch Base
+      action: fetch:template
+      input:
+        url: https://github.com/luis-henrique-carvalho/azure_api_template
+
+    - id: publish-azure
+      name: Publish to Azure DevOps
+      action: publish:azure
+      input:
+        allowedHosts: ["dev.azure.com"]
+        description: This is ${{ parameters.projectName }}
+        repoUrl: ${{ parameters.repoUrl }}
+        project: ${{ parameters.project }}
+        organization: ${{ parameters.organization }}
+
+    - id: register-azure
+      name: Register in Azure DevOps
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps['publish-azure'].output.repoContentsUrl }}
+        catalogInfoPath: "/catalog-info.yaml"
+
+    - id: create-branch
+      name: Create Branch
+      action: azure:create-branch
+      input:
+        repoUrl: ${{ parameters.repoUrl }}
+        organization: ${{ parameters.organization }}
+        project: ${{ parameters.project }}
+        branchName: "feature/${{ parameters.name }}"
+        sourceBranch: "main"
+        personalAccessToken: ${{ secrets.AZURE_PERSONAL_ACCESS_TOKEN }}
+
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps['publish-azure'].output.remoteUrl }}
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps['register'].output.entityRef }}
