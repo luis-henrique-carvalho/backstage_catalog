@@ -73,7 +73,7 @@ spec:
 
     - id: debug-repo-info
       name: Debug Repo Info
-      action: debug:lo
+      action: debug:log
       input:
         message: "${{ parameters.repoUrl }} ${{ parameters.project }} ${{ parameters.organization }}"
 
