@@ -44,12 +44,12 @@ spec:
             allowedHosts:
               - dev.azure.com
         targetBranches:
-          title: Target Branches
-          type: array
-          items:
-            type: string
-          ui:field: EntityTagsPicker
-          ui:options: {}
+            title: Target Branches
+            type: array
+            items:
+              type: string
+            ui:field: EntityTagsPicker
+            ui:options: {}
 
   steps:
     - id: fetch-base
