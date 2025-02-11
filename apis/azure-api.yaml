@@ -78,7 +78,6 @@ spec:
         repository: ${{ (parameters.repoUrl | parseRepoUrl).repo }}
         organization: ${{ (parameters.repoUrl | parseRepoUrl).organization  }}
         project: ${{ (parameters.repoUrl | parseRepoUrl).project }}
-        sourceBranch: "master"
         branchNames: ["develop", "qa", "uat"]
 
   output:
