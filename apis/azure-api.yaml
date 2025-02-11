@@ -71,24 +71,6 @@ spec:
         repoContentsUrl: ${{ steps['publish-azure'].output.repoContentsUrl }}
         catalogInfoPath: "/catalog-info.yaml"
 
-    - id: debug-repo-info
-      name: Debug Repo Info
-      action: debug:log
-      input:
-        message: ${{ (parameters.repoUrl | parseRepoUrl).repo }}
-
-    - id: debug-org-info
-      name: Debug Org Info
-      action: debug:log
-      input:
-        message: ${{ (parameters.repoUrl | parseRepoUrl).organization }}
-
-    - id: debug-project-info
-      name: Debug Project Info
-      action: debug:log
-      input:
-        message: ${{ (parameters.repoUrl | parseRepoUrl).project }}
-
     - id: create-branch
       name: Create Branch
       action: azure:create-branch
