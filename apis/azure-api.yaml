@@ -75,7 +75,7 @@ spec:
       name: Create Branch
       action: azure:create-branch
       input:
-        repoUrl: ${{ (parameters.repoUrl | parseRepoUrl).repo }}
+        repository: ${{ (parameters.repoUrl | parseRepoUrl).repo }}
         organization: ${{ (parameters.repoUrl | parseRepoUrl).organization  }}
         project: ${{ (parameters.repoUrl | parseRepoUrl).project }}
         sourceBranch: "master"
