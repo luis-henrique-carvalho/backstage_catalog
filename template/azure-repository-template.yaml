@@ -61,7 +61,13 @@ spec:
         organization: luishenrique92250483
         project: backstage
         branch: master
-        filePath: "./config/info.json"
+        fileList:
+          - filePath: "config/app"
+            fileType: "json"
+            content: '{"name": "my-app"}'
+          - filePath: "README"
+            fileType: "md"
+            content: '# My App\nThis is my app.'
 
     - id: create-branch
       name: Create Branch
