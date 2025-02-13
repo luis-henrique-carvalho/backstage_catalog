@@ -53,6 +53,16 @@ spec:
         project: backstage
         organization: luishenrique92250483
 
+    - id: commit-changes
+      name: Commit Changes
+      action: azure:commit-changes
+      input:
+        repository: ${{ parameters.name }}
+        organization: luishenrique92250483
+        project: backstage
+        branch: master
+        filePath: "./config/info.json"
+
     - id: create-branch
       name: Create Branch
       action: azure:create-branch
