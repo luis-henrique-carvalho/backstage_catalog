@@ -28,7 +28,6 @@ spec:
           title: Service Name
           type: string
           description: The name of the service
-          ui:autofocus: true
           ui:options:
             rows: 5
   steps:
@@ -43,8 +42,8 @@ spec:
         organization: luishenrique92250483
 
     - id: commit-changes
-      name: Commit Changes
-      action: azure:commit-changes
+      name: Create Commit with files
+      action: azure:create-commit
       input:
         repository: ${{ parameters.name }}
         organization: luishenrique92250483
