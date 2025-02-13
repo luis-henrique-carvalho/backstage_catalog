@@ -51,12 +51,12 @@ spec:
         project: backstage
         branch: master
         fileList:
-          - filePath: "config/app"
+          - filePath: "config/info"
             fileType: "json"
-            content: '{"name": "my-app"}'
+            content: '{"name": ${{ parameters.name }}, "serive": ${{ parameters.name }}}'
           - filePath: "README"
             fileType: "md"
-            content: '# My App\nThis is my app.'
+            content: "# ${{ parameters.name }} Service"
 
     - id: create-branch
       name: Create Branch
