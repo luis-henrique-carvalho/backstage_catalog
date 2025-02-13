@@ -53,13 +53,6 @@ spec:
         project: backstage
         organization: luishenrique92250483
 
-    - id: register-azure
-      name: Register in Azure DevOps
-      action: catalog:register
-      input:
-        repoContentsUrl: ${{ steps['publish-azure'].output.repoContentsUrl }}
-        catalogInfoPath: "/catalog-info.yaml"
-
     - id: create-branch
       name: Create Branch
       action: azure:create-branch
