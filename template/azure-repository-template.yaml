@@ -1,7 +1,7 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: azure repository
+  name: azure-repository
   title: Azure Repository
   description: Create a new azure repository
   tags:
