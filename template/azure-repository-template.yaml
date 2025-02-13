@@ -56,7 +56,7 @@ spec:
             content: '{"name": "${{ parameters.name }}", "serive": "${{ parameters.name }}"}'
           - filePath: "README"
             fileType: "md"
-            content: "# ${{ parameters.name }} Service"
+            content: "# ${{ parameters.name }} Service\n\nThis repository contains the **${{ parameters.name }}** service."
 
     - id: create-branch
       name: Create Branch
