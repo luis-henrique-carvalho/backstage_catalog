@@ -53,7 +53,7 @@ spec:
         fileList:
           - filePath: "config/info"
             fileType: "json"
-            content: '{"name": ${{ parameters.name }}, "serive": ${{ parameters.name }}}'
+            content: '{"name": "${{ parameters.name }}", "serive": "${{ parameters.name }}"}'
           - filePath: "README"
             fileType: "md"
             content: "# ${{ parameters.name }} Service"
