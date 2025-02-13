@@ -64,13 +64,19 @@ spec:
       input:
         message: ${{ (parameters.repoUrl | parseRepoUrl).repo }}
 
+    - id: write-debug-line-3
+      action: debug:log
+      name: show envs
+      input:
+        message: "${{ env.PROJECT }}${{ env.ORGANIZATION }}"
+
     - id: publish-azure
       name: Publish to Azure DevOps
       action: publish:azure
       input:
         allowedHosts: ["dev.azure.com"]
         description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.name }}
+        repoUrl: "dev.azure.com?repo=${{ parameters.name }}&organization=${{ env.ORGANIZATION }}&project=${{ env.PROJECT }}"
         project: ${{ env.PROJECT }}
         organization: ${{ env.ORGANIZATION }}
 
