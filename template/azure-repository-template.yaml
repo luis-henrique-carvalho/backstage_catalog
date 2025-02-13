@@ -31,6 +31,17 @@ spec:
           ui:autofocus: true
           ui:options:
             rows: 5
+    - title: Choose a location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - dev.azure.com
   steps:
     - id: fetch-base
       name: Fetch Base
@@ -40,6 +51,18 @@ spec:
         values:
           name: ${{ parameters.name }}
           service: ${{ parameters.service }}
+
+    - id: write-debug-line
+      action: debug:log
+      name: show repoUrl
+      input:
+        message: ${{ parameters.repoUrl }}
+
+    - id: write-debug-line-2
+      action: debug:log
+      name: show repoUrl 2
+      input:
+        message: ${{ (parameters.repoUrl | parseRepoUrl).repo }}
 
     - id: publish-azure
       name: Publish to Azure DevOps
