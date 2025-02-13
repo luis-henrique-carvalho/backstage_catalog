@@ -5,4 +5,4 @@ metadata:
   description: A collection of all Backstage example Templates
 spec:
   targets:
-    - ./templates/azure-api.yaml
+    - ./template/azure-repository-template.yaml
