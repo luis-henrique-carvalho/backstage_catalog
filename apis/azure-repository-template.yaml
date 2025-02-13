@@ -1,12 +1,11 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: azure-api
-  title: Azure API
-  description: Create a new API in Azure DevOps
+  name: azure repository
+  title: Azure Repository
+  description: Create a new azure repository
   tags:
     - recommended
-    - kind-api
     - cloud-azure
 spec:
   owner: user:guest
@@ -19,31 +18,19 @@ spec:
         - service
       properties:
         name:
-          title: Name
+          title: Repository Name
           type: string
-          description: Unique name of the component
+          description: The name of the repository
           ui:autofocus: true
           ui:options:
             rows: 5
         service:
-          title: Service
+          title: Service Name
           type: string
-          description: The service that this component belongs to
+          description: The name of the service
           ui:autofocus: true
           ui:options:
             rows: 5
-    - title: Choose a location
-      required:
-        - repoUrl
-      properties:
-        repoUrl:
-          title: Repository Location
-          type: string
-          ui:field: RepoUrlPicker
-          ui:options:
-            allowedHosts:
-              - dev.azure.com
-
   steps:
     - id: fetch-base
       name: Fetch Base
@@ -60,9 +47,9 @@ spec:
       input:
         allowedHosts: ["dev.azure.com"]
         description: This is ${{ parameters.projectName }}
-        repoUrl: ${{ parameters.repoUrl }}
-        project: ${{ parameters.project }}
-        organization: ${{ parameters.organization }}
+        repoUrl: ${{ env.REPO_URL }}
+        project: ${{ env.PROJECT }}
+        organization: ${{ env.ORGANIZATION }}
 
     - id: register-azure
       name: Register in Azure DevOps
@@ -75,9 +62,9 @@ spec:
       name: Create Branch
       action: azure:create-branch
       input:
-        repository: ${{ (parameters.repoUrl | parseRepoUrl).repo }}
-        organization: ${{ (parameters.repoUrl | parseRepoUrl).organization  }}
-        project: ${{ (parameters.repoUrl | parseRepoUrl).project }}
+        repository: ${{ parameters.name }}
+        organization: ${{ env.ORGANIZATION }}
+        project: ${{ env.PROJECT }}
         branchNames: ["develop", "qa", "uat"]
 
   output:
