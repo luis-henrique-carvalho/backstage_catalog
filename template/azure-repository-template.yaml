@@ -46,8 +46,8 @@ spec:
       action: publish:azure
       input:
         allowedHosts: ["dev.azure.com"]
-        description: This is ${{ parameters.projectName }}
-        repoUrl: ${{ env.REPO_URL }}
+        description: This is ${{ parameters.name }}
+        repoUrl: ${{ parameters.name }}
         project: ${{ env.PROJECT }}
         organization: ${{ env.ORGANIZATION }}
 
