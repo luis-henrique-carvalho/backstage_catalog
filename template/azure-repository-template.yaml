@@ -32,17 +32,6 @@ spec:
           ui:options:
             rows: 5
   steps:
-    - id: create-file
-      name: Create File
-      action: fs:create-file
-      input:
-        filePath: "./config/info.json"
-        content: |
-          {
-            "name": "${{ parameters.name }}",
-            "service": "${{ parameters.service }}"
-          }
-
     - id: publish-azure
       name: Publish to Azure DevOps
       action: publish:azure
