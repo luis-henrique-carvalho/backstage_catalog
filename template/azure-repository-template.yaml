@@ -71,6 +71,3 @@ spec:
     links:
       - title: Repository
         url: ${{ steps['publish-azure'].output.remoteUrl }}?path=%2F
-      - title: Open in catalog
-        icon: catalog
-        entityRef: ${{ steps['register-azure'].output.entityRef }}
